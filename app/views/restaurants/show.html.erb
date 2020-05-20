@@ -1,0 +1,31 @@
+<h2>
+  <%= @restaurant.name %>
+</h2>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @restaurant.category %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @restaurant.phone_number %>
+</p>
+<h4>Reviews</h4>
+<% @restaurant.reviews.each do |review| %>
+  <p><%= review.content %></p>
+  <p> <strong>Rating:</strong> <%= review.rating %> </p>
+  <%= link_to "Delete Review", "/restaurants/#{@restaurant.id}/reviews/#{review.id}", method: :delete, data: { confirm: "Are you sure you want to delete"} %>
+  <hr>
+<% end %>
+
+
+<%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
+<br>
+<%= link_to 'Back', restaurants_path %>
+
